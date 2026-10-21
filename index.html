@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shecreate Store - Marketplace Produk Digital Premium</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0d0f12',
+                        darkcard: '#161920',
+                        darkborder: '#242834',
+                        accent: '#f59e0b',
+                        accenthover: '#d97706',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0f12;
+            color: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #161920;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #242834;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        .glow-amber {
+            box-shadow: 0 0 20px -5px rgba(245, 158, 11, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar bg-darkbg text-gray-100">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-darkcard/90 backdrop-blur-md border-b border-darkborder transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilter()">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-lg shadow-amber-500/20 text-gray-950 font-black text-xl">
+                        S
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent">SHECREATE</span>
+                        <span class="block text-[10px] tracking-widest text-amber-500/80 font-medium -mt-1">DIGITAL STORE</span>
+                    </div>
+                </div>
+
+                <!-- Contact Fast Links -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="https://wa.me/6285731204310" target="_blank" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all text-sm font-medium">
+                        <i class="fab font-bold fa-whatsapp text-lg"></i>
+                        <span>CS WhatsApp</span>
+                    </a>
+                    <a href="https://instagram.com/khaaanns" target="_blank" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20 hover:bg-pink-500/20 transition-all text-sm font-medium">
+                        <i class="fab fa-instagram text-lg"></i>
+                        <span>@khaaanns</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative overflow-hidden py-12 lg:py-16 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent border-b border-darkborder/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Service Auto Fast Response
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                Akses Layanan Premium <br class="hidden sm:block"/>
+                <span class="bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent">Harga Terjangkau & Garansi Penuh</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-sm sm:text-base text-gray-400 mb-8">
+                Penyedia akun streaming, aplikasi produktivitas, AI tools, hingga kebutuhan desain profesional terlengkap di Shecreate Store.
+            </p>
+
+            <!-- Live Search Bar -->
+            <div class="max-w-xl mx-auto relative">
+                <div class="relative">
+                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Cari layanan (misal: Canva, VIU, CapCut, YouTube)..." class="w-full pl-12 pr-4 py-4 rounded-2xl bg-darkcard border border-darkborder focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-gray-100 placeholder-gray-500 transition-all outline-none shadow-xl">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Store Body -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center space-x-2 overflow-x-auto pb-4 mb-8 custom-scrollbar scroll-smooth" id="categoryTabs">
+            <!-- Dynamic Category Buttons populated by JS -->
+        </div>
+
+        <!-- Products Grid Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                <i class="fas fa-layer-group text-amber-400"></i>
+                <span id="activeCategoryTitle">Semua Produk</span>
+                <span id="productCountBadge" class="text-xs bg-darkcard px-2.5 py-1 rounded-full text-amber-400 border border-darkborder">0</span>
+            </h2>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Cards populated dynamically via JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-16 bg-darkcard rounded-3xl border border-darkborder my-8">
+            <i class="fas fa-search-minus text-5xl text-gray-600 mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-300">Produk Tidak Ditemukan</h3>
+            <p class="text-sm text-gray-500 mt-1">Coba gunakan kata kunci pencarian atau kategori lain.</p>
+        </div>
+    </main>
+
+    <!-- Modal Checkout / Buy Flow -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-darkcard border border-darkborder w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]">
+            <!-- Modal Header -->
+            <div class="p-5 border-b border-darkborder flex items-center justify-between bg-darkcard/50">
+                <div class="flex items-center gap-3">
+                    <div id="modalProductIcon" class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl font-bold border border-amber-500/20">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div>
+                        <h3 id="modalProductName" class="text-lg font-bold text-white">Nama Produk</h3>
+                        <p id="modalProductCategory" class="text-xs text-amber-400 font-medium">Kategori</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-darkbg border border-darkborder text-gray-400 hover:text-white flex items-center justify-center transition-all">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-grow">
+                <!-- Step 1: Select Plan / Variant -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">1. Pilih Varian / Durasi Paket</label>
+                    <div id="variantContainer" class="grid grid-cols-1 gap-2.5">
+                        <!-- Dynamic Variants injected here -->
+                    </div>
+                </div>
+
+                <!-- Step 2: Buyer Details -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">2. Informasi Pembeli</label>
+                    <div class="space-y-3">
+                        <div>
+                            <input type="text" id="buyerName" placeholder="Nama Lengkap Anda" class="w-full px-4 py-3 rounded-xl bg-darkbg border border-darkborder focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-sm text-gray-100 placeholder-gray-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <input type="text" id="buyerContact" placeholder="Nomor WhatsApp / Email Aktif" class="w-full px-4 py-3 rounded-xl bg-darkbg border border-darkborder focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-sm text-gray-100 placeholder-gray-500 outline-none transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Method Selection -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">3. Metode Pembayaran</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="border border-darkborder rounded-xl p-3 bg-darkbg hover:border-amber-500/50 cursor-pointer flex items-center space-x-3 transition-all has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/5">
+                            <input type="radio" name="paymentMethod" value="QRIS" class="hidden" checked onchange="togglePaymentDetail('QRIS')">
+                            <i class="fas fa-qrcode text-amber-400 text-lg"></i>
+                            <div>
+                                <span class="block text-xs font-bold text-white">QRIS All Payment</span>
+                                <span class="block text-[10px] text-gray-400">BCA, GoPay, OVO, dll</span>
+                            </div>
+                        </label>
+                        <label class="border border-darkborder rounded-xl p-3 bg-darkbg hover:border-amber-500/50 cursor-pointer flex items-center space-x-3 transition-all has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/5">
+                            <input type="radio" name="paymentMethod" value="DANA" class="hidden" onchange="togglePaymentDetail('DANA')">
+                            <i class="fas fa-wallet text-blue-400 text-lg"></i>
+                            <div>
+                                <span class="block text-xs font-bold text-white">E-Wallet DANA</span>
+                                <span class="block text-[10px] text-gray-400">Transfer Langsung</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Payment Display Box -->
+                    <div id="qrisDetail" class="mt-4 p-4 rounded-2xl bg-darkbg border border-darkborder text-center">
+                        <p class="text-xs text-gray-400 mb-2">Scan kode QRIS di bawah ini untuk penyelesaian cepat:</p>
+                        <div class="inline-block p-2 bg-white rounded-xl shadow-md mb-2">
+                            <img src="IMG-20261005-WA0066.jpg" alt="QRIS Shecreate Store" class="w-48 h-48 object-contain mx-auto rounded-lg" onerror="this.src='https://placehold.co/200x200/161920/f59e0b?text=QRIS+Shecreate'">
+                        </div>
+                        <span class="block text-[11px] text-amber-400 font-medium">An. Shecreate Store</span>
+                    </div>
+
+                    <div id="danaDetail" class="hidden mt-4 p-4 rounded-2xl bg-darkbg border border-darkborder text-center">
+                        <p class="text-xs text-gray-400">Transfer DANA Manual:</p>
+                        <p class="text-lg font-bold text-amber-400 my-1">085731204310</p>
+                        <p class="text-xs text-gray-300">An. Shecreate Store</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-5 border-t border-darkborder bg-darkcard flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-gray-400 block">Total Pembayaran</span>
+                    <span id="selectedPriceDisplay" class="text-xl font-extrabold text-amber-400">Rp 0</span>
+                </div>
+                <button onclick="processOrder()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-gray-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span>Order via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Message Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-darkcard border border-amber-500/30 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300">
+        <i id="toastIcon" class="fas fa-info-circle text-amber-400"></i>
+        <span id="toastMessage" class="text-sm font-medium text-white">Notifikasi</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-darkborder bg-darkcard py-10 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-3 justify-center sm:justify-start">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-gray-950 font-black text-sm">S</div>
+                        <span class="text-lg font-bold text-white tracking-wider">SHECREATE STORE</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Penyedia layanan produk digital, aplikasi premium, streaming, dan akun berlangganan dengan proses instan, termurah, dan terpercaya.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-white mb-3">Kontak & Bantuan</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li class="flex items-center justify-center sm:justify-start gap-2">
+                            <i class="fab fa-whatsapp text-amber-400"></i>
+                            <span>+62 857 3120 4310</span>
+                        </li>
+                        <li class="flex items-center justify-center sm:justify-start gap-2">
+                            <i class="fas fa-envelope text-amber-400"></i>
+                            <span>khanzrut@gmail.com</span>
+                        </li>
+                        <li class="flex items-center justify-center sm:justify-start gap-2">
+                            <i class="fab fa-instagram text-amber-400"></i>
+                            <span>@khaaanns</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-white mb-3">Metode Pembayaran</h4>
+                    <p class="text-xs text-gray-400 mb-2">Mendukung QRIS All Payment (BCA, Mandiri, BRI, GoPay, OVO, ShopeePay, DANA, LinkAja, Dll).</p>
+                    <div class="inline-block px-3 py-1 rounded-lg bg-darkbg border border-darkborder text-xs text-amber-400 font-bold">
+                        <i class="fas fa-shield-alt mr-1"></i> Transaksi Aman 100%
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-darkborder/60 pt-6 text-center text-xs text-gray-500">
+                &copy; 2026 Shecreate Store. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Script -->
+    <script>
+        // Store Data List (35 categories with complete options)
+        const products = [
+            {
+                id: 'viu',
+                name: 'VIU Premium',
+                category: 'Streaming',
+                icon: 'fa-tv',
+                bgGradient: 'from-amber-500/20 to-yellow-600/10',
+                badge: 'Populer',
+                variants: [
+                    { name: 'VIU ANLIM PRIVATE 3 BULAN', price: 2000 },
+                    { name: 'VIU ANLIM PRIVATE LIFETIME', price: 15000 }
+                ]
+            },
+            {
+                id: 'vidio',
+                name: 'Vidio Platinum',
+                category: 'Streaming',
+                icon: 'fa-play-circle',
+                bgGradient: 'from-red-500/20 to-amber-600/10',
+                badge: 'Hot',
+                variants: [
+                    { name: 'VIDIO PLATINUM PRIVATE 1 BULAN MOBILE', price: 30000 }
+                ]
+            },
+            {
+                id: 'iqiyi',
+                name: 'iQIYI VIP',
+                category: 'Streaming',
+                icon: 'fa-film',
+                bgGradient: 'from-emerald-500/20 to-teal-600/10',
+                badge: 'Laris',
+                variants: [
+                    { name: 'IQIYI 1 BULAN 6 USER PREMIUM NO RENEW', price: 10000 },
+                    { name: 'IQIYI 1 BULAN PRIVATE PREMIUM NO RENEW', price: 25000 },
+                    { name: 'IQIYI 1 TAHUN SHARING PREMIUM', price: 15000 }
+                ]
+            },
+            {
+                id: 'wetv',
+                name: 'WeTV VIP',
+                category: 'Streaming',
+                icon: 'fa-video',
+                bgGradient: 'from-orange-500/20 to-amber-600/10',
+                badge: '',
+                variants: [
+                    { name: 'WETV 6 USER 1 BULAN NO RENEW', price: 10000 },
+                    { name: 'WETV PRIVATE 1 BULAN NO RENEW', price: 30000 },
+                    { name: 'WETV SHARING 1 TAHUN NO RENEW', price: 50000 }
+                ]
+            },
+            {
+                id: 'bstation',
+                name: 'BStation Premium',
+                category: 'Streaming',
+                icon: 'fa-desktop',
+                bgGradient: 'from-pink-500/20 to-rose-600/10',
+                badge: 'Anime',
+                variants: [
+                    { name: 'BSTATION 1 BULAN SHARING', price: 10000 },
+                    { name: 'BSTATION 3 BULAN SHARING', price: 20000 },
+                    { name: 'BSTATION 1 TAHUN SHARING', price: 35000 }
+                ]
+            },
+            {
+                id: 'youku',
+                name: 'Youku VIP',
+                category: 'Streaming',
+                icon: 'fa-photo-video',
+                bgGradient: 'from-blue-500/20 to-indigo-600/10',
+                badge: '',
+                variants: [
+                    { name: 'YOUKU 1 BULAN SHARING', price: 10000 },
+                    { name: 'YOUKU 3 BULAN SHARING', price: 20000 },
+                    { name: 'YOUKU 1 TAHUN SHARING', price: 45000 }
+                ]
+            },
+            {
+                id: 'catchplay',
+                name: 'Catchplay+',
+                category: 'Streaming',
+                icon: 'fa-compact-disc',
+                bgGradient: 'from-amber-600/20 to-orange-600/10',
+                badge: '',
+                variants: [
+                    { name: 'CATCHPLAY+ 1 TAHUN SHARING', price: 15000 }
+                ]
+            },
+            {
+                id: 'dazzcam',
+                name: 'DazzCam Pro',
+                category: 'Design & Editing',
+                icon: 'fa-camera-retro',
+                bgGradient: 'from-yellow-500/20 to-amber-600/10',
+                badge: 'iOS',
+                variants: [
+                    { name: 'DAZZCAM IOS LIFETIME VERIF', price: 10000 }
+                ]
+            },
+            {
+                id: 'hbogo',
+                name: 'HBO GO / MAX',
+                category: 'Streaming',
+                icon: 'fa-clapperboard',
+                bgGradient: 'from-purple-500/20 to-indigo-600/10',
+                badge: 'Best Seller',
+                variants: [
+                    { name: 'HBO GO MAX 1 BULAN SHARING STANDAR', price: 5000 },
+                    { name: 'HBO GO MAX 1 BULAN SHARING ULTIMATE', price: 15000 },
+                    { name: 'HBO GO MAX 1 BULAN PRIVATE STANDAR', price: 30000 },
+                    { name: 'HBO GO MAX 1 BULAN PRIVATE ULTIMATE', price: 70000 }
+                ]
+            },
+            {
+                id: 'applemusic',
+                name: 'Apple Music',
+                category: 'Music & Audio',
+                icon: 'fa-music',
+                bgGradient: 'from-rose-500/20 to-pink-600/10',
+                badge: '',
+                variants: [
+                    { name: 'APPLE MUSIC 1 BULAN', price: 3000 },
+                    { name: 'APPLE MUSIC HEAD 1 BULAN (BELI=TAU CARANYA)', price: 15000 }
+                ]
+            },
+            {
+                id: 'ms365',
+                name: 'Microsoft 365',
+                category: 'AI & Productivity',
+                icon: 'fa-file-word',
+                bgGradient: 'from-blue-600/20 to-cyan-600/10',
+                badge: '',
+                variants: [
+                    { name: 'MICROSOFT 365 HEAD 1 BULAN (BELI=TAU CARANYA)', price: 10000 }
+                ]
+            },
+            {
+                id: 'primevideo',
+                name: 'Prime Video',
+                category: 'Streaming',
+                icon: 'fa-play',
+                bgGradient: 'from-cyan-500/20 to-blue-600/10',
+                badge: 'Hot',
+                variants: [
+                    { name: 'PRIME VIDIO SHARING 1 BULAN', price: 15000 },
+                    { name: 'PRIME VIDIO PRIVATE 1 BULAN', price: 20000 }
+                ]
+            },
+            {
+                id: 'alightmotion',
+                name: 'Alight Motion Pro',
+                category: 'Design & Editing',
+                icon: 'fa-wand-magic-sparkles',
+                bgGradient: 'from-emerald-600/20 to-green-600/10',
+                badge: 'Murah',
+                variants: [
+                    { name: 'ALIGHT MOTION 1 TAHUN PRIVATE', price: 3000 }
+                ]
+            },
+            {
+                id: 'ibispaint',
+                name: 'Ibis Paint X',
+                category: 'Design & Editing',
+                icon: 'fa-paint-brush',
+                bgGradient: 'from-indigo-500/20 to-purple-600/10',
+                badge: 'Android',
+                variants: [
+                    { name: 'IBIS PAINT X 1 TAHUN ANDRO', price: 20000 }
+                ]
+            },
+            {
+                id: 'polarr',
+                name: 'Polarr Pro',
+                category: 'Design & Editing',
+                icon: 'fa-sliders',
+                bgGradient: 'from-sky-500/20 to-blue-600/10',
+                badge: '',
+                variants: [
+                    { name: 'POLARR 1 TAHUN SHARING (ANDRO+IOS)', price: 15000 }
+                ]
+            },
+            {
+                id: 'vsco',
+                name: 'VSCO Pro',
+                category: 'Design & Editing',
+                icon: 'fa-camera',
+                bgGradient: 'from-neutral-500/20 to-gray-600/10',
+                badge: '',
+                variants: [
+                    { name: 'VSCO 1 TAHUN PRO (ANDRO+IOS)', price: 15000 }
+                ]
+            },
+            {
+                id: 'wattpad',
+                name: 'Wattpad Premium',
+                category: 'Reading & Study',
+                icon: 'fa-book-open',
+                bgGradient: 'from-orange-500/20 to-amber-500/10',
+                badge: '',
+                variants: [
+                    { name: 'WATTPAD 1 BULAN', price: 5000 },
+                    { name: 'WATTPAD 1 TAHUN', price: 15000 }
+                ]
+            },
+            {
+                id: 'canva',
+                name: 'Canva Pro',
+                category: 'Design & Editing',
+                icon: 'fa-palette',
+                bgGradient: 'from-teal-500/20 to-cyan-600/10',
+                badge: 'Favorit',
+                variants: [
+                    { name: 'CANVA PRO HEAD 1 BULAN + AKSES', price: 7000 },
+                    { name: 'CANVA PRO MEMBER 3 BULAN', price: 10000 },
+                    { name: 'CANVA PRO HEAD 3 BULAN', price: 15000 },
+                    { name: 'CANVA 1 TAHUN PRO MEMBER', price: 25000 },
+                    { name: 'CANVA 1 TAHUN PRO MEMBER + DESIGNER', price: 30000 },
+                    { name: 'CANVA LIFETIME MEMBER (Garansi 6 bulan)', price: 35000 }
+                ]
+            },
+            {
+                id: 'loklok',
+                name: 'Loklok / LokTV',
+                category: 'Streaming',
+                icon: 'fa-tv',
+                bgGradient: 'from-purple-600/20 to-pink-600/10',
+                badge: '',
+                variants: [
+                    { name: 'LOKLOK/LOKTV 40 HARI 3 USER BASIC', price: 35000 }
+                ]
+            },
+            {
+                id: 'scribd',
+                name: 'Scribd Premium',
+                category: 'Reading & Study',
+                icon: 'fa-book',
+                bgGradient: 'from-blue-500/20 to-sky-600/10',
+                badge: '',
+                variants: [
+                    { name: 'SCRIBD 1 BULAN SHARING', price: 3000 },
+                    { name: 'SCRIBD 1 BULAN PRIVATE (UNLIM DOWNLOD)', price: 5000 }
+                ]
+            },
+            {
+                id: 'grammarly',
+                name: 'Grammarly Premium',
+                category: 'Reading & Study',
+                icon: 'fa-pen-nib',
+                bgGradient: 'from-emerald-500/20 to-teal-500/10',
+                badge: 'Pelajar',
+                variants: [
+                    { name: 'GRAMMARLY 1 BULAN SHARING', price: 10000 },
+                    { name: 'GRAMMARLY 1 BULAN PRIVATE', price: 30000 }
+                ]
+            },
+            {
+                id: 'quillbot',
+                name: 'Quillbot Premium',
+                category: 'Reading & Study',
+                icon: 'fa-robot',
+                bgGradient: 'from-green-500/20 to-emerald-600/10',
+                badge: '',
+                variants: [
+                    { name: 'QUILLBOT 1 BULAN SHARING', price: 10000 }
+                ]
+            },
+            {
+                id: 'viki',
+                name: 'Viki Rakuten Plus',
+                category: 'Streaming',
+                icon: 'fa-film',
+                bgGradient: 'from-blue-600/20 to-indigo-600/10',
+                badge: 'Drakor',
+                variants: [
+                    { name: 'VIKI RAKUTEN PLUS 1 BULAN', price: 10000 },
+                    { name: 'VIKI RAKUTEN PLUS 1 BULAN PRIVATE', price: 35000 }
+                ]
+            },
+            {
+                id: 'gemini',
+                name: 'Gemini AI Pro',
+                category: 'AI & Productivity',
+                icon: 'fa-brain',
+                bgGradient: 'from-amber-500/20 to-rose-600/10',
+                badge: 'Storage 5TB',
+                variants: [
+                    { name: 'GEMINI AI MEMBER PRO 18 BULAN + DRIVE 5TB', price: 20000 }
+                ]
+            },
+            {
+                id: 'capcut',
+                name: 'CapCut Pro',
+                category: 'Design & Editing',
+                icon: 'fa-scissors',
+                bgGradient: 'from-neutral-600/20 to-stone-600/10',
+                badge: 'Best Creator',
+                variants: [
+                    { name: 'CAPCUT PRO PRIVATE FULLGAR 1 MINGGU REG INDO', price: 7000 },
+                    { name: 'CAPCUT 2 USER 1 BULAN', price: 20000 },
+                    { name: 'CAPCUT PRIVATE 1 BULAN', price: 35000 }
+                ]
+            },
+            {
+                id: 'meitu',
+                name: 'Meitu VIP',
+                category: 'Design & Editing',
+                icon: 'fa-sparkles',
+                bgGradient: 'from-pink-500/20 to-rose-500/10',
+                badge: '',
+                variants: [
+                    { name: 'MEITU VIP 1 MINGGU PRIVATE', price: 5000 },
+                    { name: 'MEITU VIP 14 HARI PRIVATE', price: 10000 }
+                ]
+            },
+            {
+                id: 'wink',
+                name: 'Wink VIP',
+                category: 'Design & Editing',
+                icon: 'fa-video-slash',
+                bgGradient: 'from-purple-500/20 to-indigo-500/10',
+                badge: '',
+                variants: [
+                    { name: 'WINK PLUS 1 MINGGU PRIVATE', price: 7000 }
+                ]
+            },
+            {
+                id: 'camscanner',
+                name: 'CamScanner Premium',
+                category: 'AI & Productivity',
+                icon: 'fa-file-invoice',
+                bgGradient: 'from-emerald-500/20 to-teal-600/10',
+                badge: '',
+                variants: [
+                    { name: 'CAMSCANNER 1 BULAN', price: 10000 }
+                ]
+            },
+            {
+                id: 'shortmax',
+                name: 'ShortMax Premium',
+                category: 'Streaming',
+                icon: 'fa-mobile-screen',
+                bgGradient: 'from-red-500/20 to-rose-600/10',
+                badge: '',
+                variants: [
+                    { name: 'SHORTMAX ALL DEVICE PREM 1 BULAN NO VERIF', price: 10000 }
+                ]
+            },
+            {
+                id: 'zoom',
+                name: 'Zoom Pro',
+                category: 'AI & Productivity',
+                icon: 'fa-video',
+                bgGradient: 'from-blue-500/20 to-cyan-600/10',
+                badge: 'Instant',
+                variants: [
+                    { name: 'ZOOM Pro 4DAY NO RENEW FULL GARANSI', price: 5000 }
+                ]
+            },
+            {
+                id: 'spotify',
+                name: 'Spotify Premium',
+                category: 'Music & Audio',
+                icon: 'fa-spotify',
+                bgGradient: 'from-green-500/20 to-emerald-600/10',
+                badge: 'Hot',
+                variants: [
+                    { name: 'SPOTIFY PREMIUM 1 BULAN STRONG NOGARANSI + AKSES', price: 25000 },
+                    { name: 'SPOTIFY 3 BULAN', price: 45000 }
+                ]
+            },
+            {
+                id: 'youtube',
+                name: 'YouTube Premium',
+                category: 'Streaming',
+                icon: 'fa-youtube',
+                bgGradient: 'from-red-600/20 to-rose-600/10',
+                badge: 'Bebas Iklan',
+                variants: [
+                    { name: 'YOUTUBE 1 BULAN', price: 15000 },
+                    { name: 'YOUTUBE 3 BULAN', price: 30000 }
+                ]
+            },
+            {
+                id: 'chatgpt',
+                name: 'ChatGPT Plus / Go',
+                category: 'AI & Productivity',
+                icon: 'fa-robot',
+                bgGradient: 'from-teal-500/20 to-emerald-600/10',
+                badge: 'AI Top',
+                variants: [
+                    { name: 'CHATGPT GO 1 BULAN', price: 35000 },
+                    { name: 'CHATGPT PLUS 1 BULAN', price: 45000 }
+                ]
+            },
+            {
+                id: 'wps',
+                name: 'WPS Office VIP',
+                category: 'AI & Productivity',
+                icon: 'fa-file-lines',
+                bgGradient: 'from-red-500/20 to-amber-600/10',
+                badge: '',
+                variants: [
+                    { name: 'WPS PRO 1 BULAN', price: 7000 }
+                ]
+            },
+            {
+                id: 'ilovepdf',
+                name: 'iLovePDF Premium',
+                category: 'AI & Productivity',
+                icon: 'fa-file-pdf',
+                bgGradient: 'from-rose-600/20 to-red-600/10',
+                badge: '',
+                variants: [
+                    { name: 'ILOVEPDF PREMIUM 1 BULAN', price: 7000 }
+                ]
+            }
+        ];
+
+        // Unique categories list
+        const categories = ['Semua', 'Streaming', 'AI & Productivity', 'Design & Editing', 'Music & Audio', 'Reading & Study'];
+
+        let activeCategory = 'Semua';
+        let currentSelectedProduct = null;
+        let selectedVariantIndex = 0;
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderProducts();
+        });
+
+        // Format Number to IDR Currency
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        // Render Category Filtering Navigation
+        function renderCategories() {
+            const container = document.getElementById('categoryTabs');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat}')" class="px-5 py-2.5 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all border ${activeCategory === cat ? 'bg-amber-500 text-gray-950 border-amber-500 shadow-md shadow-amber-500/20' : 'bg-darkcard text-gray-400 border-darkborder hover:border-amber-500/50 hover:text-white'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Set Active Category Filter
+        function setCategory(cat) {
+            activeCategory = cat;
+            document.getElementById('activeCategoryTitle').innerText = cat === 'Semua' ? 'Semua Produk' : cat;
+            renderCategories();
+            renderProducts();
+        }
+
+        // Reset Filter via Logo Click
+        function resetFilter() {
+            document.getElementById('searchInput').value = '';
+            setCategory('Semua');
+        }
+
+        // Search Filter
+        function filterProducts() {
+            renderProducts();
+        }
+
+        // Render Product Cards Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchKeyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            const filtered = products.filter(p => {
+                const matchesCategory = activeCategory === 'Semua' || p.category === activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchKeyword) || 
+                                      p.category.toLowerCase().includes(searchKeyword) ||
+                                      p.variants.some(v => v.name.toLowerCase().includes(searchKeyword));
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('productCountBadge').innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(product => {
+                // Determine minimum price for "Mulai dari"
+                const minPrice = Math.min(...product.variants.map(v => v.price));
+
+                return `
+                <div class="group bg-darkcard border border-darkborder rounded-3xl p-5 hover:border-amber-500/40 transition-all duration-300 flex flex-col justify-between hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1">
+                    <div>
+                        <!-- Header Card -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br ${product.bgGradient} border border-white/5 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fas ${product.icon}"></i>
+                            </div>
+                            ${product.badge ? `<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20">${product.badge}</span>` : ''}
+                        </div>
+
+                        <!-- Info -->
+                        <span class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">${product.category}</span>
+                        <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors mt-0.5 mb-2">${product.name}</h3>
+                        
+                        <!-- Available Options Summary -->
+                        <p class="text-xs text-gray-400 mb-4 line-clamp-2">
+                            ${product.variants.length} Pilihan Varian (${product.variants[0].name.split(' ').slice(1).join(' ')})
+                        </p>
+                    </div>
+
+                    <!-- Price & Buy Button -->
+                    <div class="pt-4 border-t border-darkborder/60 flex items-center justify-between mt-2">
+                        <div>
+                            <span class="block text-[10px] text-gray-500">Mulai dari</span>
+                            <span class="text-base font-extrabold text-amber-400">${formatRupiah(minPrice)}</span>
+                        </div>
+                        <button onclick="openModal('${product.id}')" class="px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500 text-amber-400 hover:text-gray-950 border border-amber-500/30 font-bold text-xs transition-all flex items-center gap-1.5">
+                            <span>Beli</span>
+                            <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Open Checkout Modal
+        function openModal(productId) {
+            currentSelectedProduct = products.find(p => p.id === productId);
+            if (!currentSelectedProduct) return;
+
+            selectedVariantIndex = 0;
+
+            document.getElementById('modalProductName').innerText = currentSelectedProduct.name;
+            document.getElementById('modalProductCategory').innerText = currentSelectedProduct.category;
+            document.getElementById('modalProductIcon').innerHTML = `<i class="fas ${currentSelectedProduct.icon}"></i>`;
+
+            // Populate Variants List
+            const variantContainer = document.getElementById('variantContainer');
+            variantContainer.innerHTML = currentSelectedProduct.variants.map((v, idx) => `
+                <div onclick="selectVariant(${idx})" id="variant-item-${idx}" class="p-3.5 rounded-xl border ${idx === 0 ? 'border-amber-500 bg-amber-500/10' : 'border-darkborder bg-darkbg'} hover:border-amber-500/50 cursor-pointer transition-all flex items-center justify-between">
+                    <div>
+                        <span class="block text-xs font-bold text-white">${v.name}</span>
+                        <span class="block text-[10px] text-emerald-400 mt-0.5"><i class="fas fa-check-circle mr-1"></i>Garansi Full</span>
+                    </div>
+                    <span class="text-sm font-extrabold text-amber-400">${formatRupiah(v.price)}</span>
+                </div>
+            `).join('');
+
+            updateModalPriceDisplay();
+
+            // Show Modal
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+
+        // Select Variant Item in Modal
+        function selectVariant(idx) {
+            selectedVariantIndex = idx;
+            currentSelectedProduct.variants.forEach((_, i) => {
+                const el = document.getElementById(`variant-item-${i}`);
+                if (i === idx) {
+                    el.className = 'p-3.5 rounded-xl border border-amber-500 bg-amber-500/10 cursor-pointer transition-all flex items-center justify-between';
+                } else {
+                    el.className = 'p-3.5 rounded-xl border border-darkborder bg-darkbg hover:border-amber-500/50 cursor-pointer transition-all flex items-center justify-between';
+                }
+            });
+            updateModalPriceDisplay();
+        }
+
+        // Update Modal Selected Price
+        function updateModalPriceDisplay() {
+            if (!currentSelectedProduct) return;
+            const price = currentSelectedProduct.variants[selectedVariantIndex].price;
+            document.getElementById('selectedPriceDisplay').innerText = formatRupiah(price);
+        }
+
+        // Toggle Payment Instructions
+        function togglePaymentDetail(method) {
+            const qris = document.getElementById('qrisDetail');
+            const dana = document.getElementById('danaDetail');
+            if (method === 'QRIS') {
+                qris.classList.remove('hidden');
+                dana.classList.add('hidden');
+            } else {
+                qris.classList.add('hidden');
+                dana.classList.remove('hidden');
+            }
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('checkoutModal');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Process Order and Redirect to WhatsApp
+        function processOrder() {
+            const name = document.getElementById('buyerName').value.trim();
+            const contact = document.getElementById('buyerContact').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (!name || !contact) {
+                showToast('Mohon lengkapi Nama dan Kontak WhatsApp/Email Anda!', 'warning');
+                return;
+            }
+
+            const selectedVariant = currentSelectedProduct.variants[selectedVariantIndex];
+
+            // Build WhatsApp Message
+            const whatsappMessage = `*HALO SHECREATE STORE, SAYA MAU ORDER!* 🛒\n\n` +
+                `*Detail Pesanan:*` +
+                `\n• Produk: ${currentSelectedProduct.name}` +
+                `\n• Varian: ${selectedVariant.name}` +
+                `\n• Harga: ${formatRupiah(selectedVariant.price)}` +
+                `\n\n*Data Pembeli:*` +
+                `\n• Nama: ${name}` +
+                `\n• Kontak/Email: ${contact}` +
+                `\n• Pembayaran Via: ${paymentMethod}` +
+                `\n\nMohon diproses kak, bukti pembayaran akan dikirimkan disini. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const targetUrl = `https://wa.me/6285731204310?text=${encodedMessage}`;
+
+            showToast('Mengarahkan ke WhatsApp CS Shecreate...', 'success');
+
+            setTimeout(() => {
+                window.open(targetUrl, '_blank');
+                closeModal();
+            }, 1000);
+        }
+
+        // Custom Notification Toast Function
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            const iconEl = document.getElementById('toastIcon');
+
+            msgEl.innerText = message;
+
+            if (type === 'warning') {
+                iconEl.className = 'fas fa-exclamation-triangle text-amber-400';
+            } else if (type === 'success') {
+                iconEl.className = 'fas fa-check-circle text-emerald-400';
+            } else {
+                iconEl.className = 'fas fa-info-circle text-blue-400';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
